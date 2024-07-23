@@ -1,4 +1,4 @@
-module github.com/go-resty/resty/v2
+module github.com/nrydanov/resty/v2
 
 go 1.16
 

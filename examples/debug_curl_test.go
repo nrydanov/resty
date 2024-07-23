@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/go-resty/resty/v2"
+	"github.com/nrydanov/resty/v2"
 )
 
 // 1. Generate curl for unexecuted request(dry-run)
