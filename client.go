@@ -1238,10 +1238,13 @@ func (c *Client) execute(req *Request) (*Response, error) {
 			}
 		}
 
-		if response.body, err = io.ReadAll(body); err != nil {
-			response.setReceivedAt()
-			return response, err
-		}
+        var buf bytes.Buffer
+		if _, err = io.Copy(&buf, body); err != nil {
+            response.setReceivedAt()
+            return response, err
+        } 
+        response.body = buf.Bytes()
+        defer buf.Reset()
 
 		response.size = int64(len(response.body))
 	}
@@ -1418,3 +1421,4 @@ func createClient(hc *http.Client) *Client {
 
 	return c
 }
+
