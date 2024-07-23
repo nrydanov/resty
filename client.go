@@ -1239,12 +1239,12 @@ func (c *Client) execute(req *Request) (*Response, error) {
 		}
 
         var buf bytes.Buffer
+        defer buf.Reset()
 		if _, err = io.Copy(&buf, body); err != nil {
             response.setReceivedAt()
             return response, err
         } 
         response.body = buf.Bytes()
-        defer buf.Reset()
 
 		response.size = int64(len(response.body))
 	}
